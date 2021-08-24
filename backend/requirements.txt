@@ -1,0 +1,27 @@
+Flask
+Gunicorn
+Flask-Cors
+Flask-SQLAlchemy
+psycopg2
+pandas
+slack_sdk==3.5.1
+altair==4.1.0
+altair_saver==0.5.0
+selenium==3.141.0
+cloudstorage[amazon]==0.11.0
+# python-magic-bin==0.4.14
+stripe==2.56.0
+pyyaml==5.4.1
+# dbt==0.18.1
+dbt-postgres==0.19.1
+cryptography==3.4.7
+apscheduler==3.7.0
+magic-admin==0.0.5
+
+# GOOGLE STUFF
+# oauth2client==4.1.2
+google
+google-auth
+google-api-core
+google-api-python-client
+httplib2

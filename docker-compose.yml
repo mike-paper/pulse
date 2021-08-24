@@ -1,0 +1,26 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  db:
+    image: 'postgres:13-alpine'
+    container_name: postgres
+    ports:
+      - "5432:5432"
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-Dev
+    ports:
+      - "8080:8080"
+    container_name: frontend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file: ./backend/.env
+    environment: 
+      - "PORT:5000"
+      - "WORKERS:4"
+volumes:
+  logvolume01: {}

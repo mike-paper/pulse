@@ -1,0 +1,44 @@
+/* purgecss start ignore */
+@tailwind base;
+
+@tailwind components;
+
+.funders-table {
+    @apply min-w-full;
+}
+
+.funders-th {
+    @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.funders-tbody {
+    @apply bg-white;
+}
+
+.funders-td {
+    @apply px-6 py-4 text-sm font-medium text-gray-900;
+}
+
+@tailwind utilities;
+
+/* purgecss end ignore */
+
+.w-28 {
+    width: 7rem;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    text-align: center;
+    padding: 2px 6px;
+    position: absolute;
+    z-index: 100;
+    /* margin-left: -10px; */
+}
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+.w-11 {
+    width: 2.75rem;
+}

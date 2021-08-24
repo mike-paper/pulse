@@ -1,0 +1,21 @@
+default:
+  outputs:
+    dev:
+      type: postgres
+      threads: 8
+      host: oregon-postgres.render.com
+      port: 5432
+      user: admin
+      pass: "{{ env_var('PAPER_DBT_PASSWORD') }}"
+      dbname: paperdb
+      schema: "{{ env_var('PAPER_DBT_SCHEMA') }}"
+    prod:
+      type: postgres
+      threads: 8
+      host: oregon-postgres.render.com
+      port: 5432
+      user: admin
+      pass: "{{ env_var('PAPER_DBT_PASSWORD') }}"
+      dbname: paperdb
+      schema: "{{ env_var('PAPER_DBT_SCHEMA') }}"
+  target: dev

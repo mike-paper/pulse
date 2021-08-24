@@ -1,0 +1,38 @@
+services:
+  # A Docker web service
+  - type: web
+    name: pulse-backend
+    env: docker
+    repo: https://github.com/mike-paper/pulse.git # optional
+    region: oregon # optional (defaults to oregon)
+    plan: starter plus # optional (defaults to starter)
+    branch: main # optional (uses repo default)
+    dockerfilePath: ./backend/Dockerfile
+    # dockerCommand: . 
+    dockerContext: ./backend
+    numInstances: 1 # optional (defaults to 1)
+    healthCheckPath: /ping
+    envVars:
+      - key: WORKERS
+        value: 4
+      - key: PORT
+        value: 5000
+      - fromGroup: pulse
+  # A static site
+  - type: web
+    env: static
+    name: pulse-frontend
+    repo: https://github.com/mike-paper/pulse.git
+    branch: main # optional (uses repo default)
+    buildCommand: cd frontend && yarn add @vue/cli-service && yarn build
+    staticPublishPath: frontend/dist
+    pullRequestPreviewsEnabled: true # optional
+    domains:
+      - pulse.trypaper.io
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+      - type: redirect
+        source: /
+        destination: /metrics

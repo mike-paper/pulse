@@ -1,0 +1,69 @@
+{
+  "name": "paper",
+  "version": "0.2.0",
+  "private": true,
+  "license": "BUSL-1.1",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.2.0",
+    "@heroicons/vue": "^1.0.1",
+    "@magic-ext/oauth": "^0.7.0",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
+    "@tailwindcss/forms": "^0.2.1",
+    "@tailwindcss/typography": "^0.4.0",
+    "axios": "^0.21.0",
+    "core-js": "^3.6.5",
+    "gridjs": "^5.0.0",
+    "magic-sdk": "^4.2.1",
+    "mitt": "^2.1.0",
+    "mousetrap": "^1.6.5",
+    "postcss": "^8.2.6",
+    "ssf": "^0.11.2",
+    "tailwindcss": "^2.1.0",
+    "typed.js": "^2.0.11",
+    "vega": "^5.20.2",
+    "vega-embed": "^6.18.1",
+    "vega-lite": "^5.1.0",
+    "vue": "^3.0.5",
+    "vue-currency-input": "2.0.0-rc.1",
+    "vue-router": "4",
+    "vue3-popper": "^1.2.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.5",
+    "autoprefixer": "^9.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {
+      "no-unused-vars": "off",
+      "vue/valid-v-model": "off"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

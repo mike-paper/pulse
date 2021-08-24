@@ -1,0 +1,130 @@
+version: 2
+
+models:
+  - name: mrr_facts
+    description: > 
+      MRR (monthly recurring revenue) by month at customer level
+    docs:
+      show: true
+    meta:
+      label: Revenue History
+      joins:
+        - join: customers
+          sql_on: mrr_facts.email = customers.email
+    columns:
+      - name: email
+        description: Billing email for customer (get from Invoice if possible)
+        meta:
+          dimension:
+            label: Email
+          measures:
+            customers:
+              label: Customers
+              type: count
+      - name: plan_interval
+        description: Monthly or Yearly (Annual) 
+        tests:
+          - accepted_values:
+              values: ['month', 'year']
+        meta:
+          dimension:
+            label: Plan Interval
+      - name: mrr_month_dt
+        description: Data as of date (month)
+        meta:
+          dimension:
+            label: Month
+            timeframes: [week, month, year]
+      - name: current_month
+        description: Churned MRR (monthly recurring revenue)
+        meta:
+          dimension:
+            label: Current Month (Flag)
+      - name: mrr
+        description: MRR (monthly recurring revenue)
+        meta:
+          dimension:
+            label: MRR
+            format: $#,##0
+          measures:
+            mrr_sum:
+              label: Total MRR
+              type: sum
+              format: $#,##0
+            mrr_avg:
+              label: Avg MRR
+              type: avg
+              format: $#,##0
+      - name: churned_mrr
+        description: Churned MRR (monthly recurring revenue)
+        meta:
+          dimension:
+            label: Churned MRR
+          measures:
+            churned_mrr_sum:
+              label: Churned MRR
+              type: sum
+  - name: customers
+    description: > 
+      Customers https://stripe.com/docs/api/customers
+    docs:
+      show: true
+    meta:
+      measures:
+        total:
+          type: count
+          label: Count
+        uniques:
+          sql: count(distinct(email))
+          label: Unique
+    columns:
+      - name: customer_id
+        description: Customer ID
+        meta:
+          dimension:
+            label: Customer ID
+      - name: email
+        description: Customer email
+        meta:
+          dimension:
+            label: Email
+          measures:
+            customers:
+              label: Customers
+              type: count
+      - name: created_on
+        description: Customer created on
+        meta:
+          dimension:
+            label: Customer Start Date
+            timeframes: [week, month, year]
+    # - name: plans
+  #   description: > 
+  #     Plans https://stripe.com/docs/api/plans
+  #   docs:
+  #     show: true
+  #   columns:
+  #     - name: plan_id
+  #       description: Plan ID
+  #       meta:
+  #         dimension:
+  #           label: Plan ID
+  #         measures:
+  #           plans:
+  #             label: Plans
+  #             type: count
+  #     - name: name
+  #       description: Name
+  #       meta:
+  #         dimension:
+  #           label: Name
+  #         measures:
+  #           customers:
+  #             label: Customers
+  #             type: count
+  #     - name: created_on
+  #       description: Plan created on
+  #       meta:
+  #         dimension:
+  #           label: Created On
+  #           timeframes: [week, month, year]
